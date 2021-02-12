@@ -1,6 +1,8 @@
 import { ApolloServer } from "apollo-server-express";
 import connectRedis from "connect-redis";
+import 'dotenv-safe/config'
 import cors from "cors";
+import path from 'path'
 import express from "express";
 import session from "express-session";
 import Redis from "ioredis";
@@ -19,9 +21,6 @@ import { createUserLoader } from "./utils/createUserLoader";
 
 const main = async () => {
 
-  const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
-  
   const conn = await createConnection({
     type: "postgres",
     url: process.env.DATABASE_URL,
@@ -32,7 +31,8 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
   });
   await conn.runMigrations();
 
-  // await Post.delete({});
+  //await User.delete({});
+
 
   const app = express();
 
@@ -41,7 +41,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
   app.set("trust proxy", 1);
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN,
+       origin: process.env.CORS_ORIGIN,
       credentials: true,
     })
   );
@@ -75,7 +75,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
       res,
       redis,
       userLoader: createUserLoader(),
-      updootLoader: createUpvoteLoader(),
+      upvote: createUpvoteLoader(),
     }),
   });
 

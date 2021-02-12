@@ -1,1 +1,1 @@
-{"version":3,"file":"1612134343076-Mockposts.js","sourceRoot":"","sources":["../../src/migrations/1612134343076-Mockposts.ts"],"names":[],"mappings":";;;;;;;;;;;;AAEA,MAAa,sBAAsB;IAElB,EAAE,CAAC,CAAc;;QAC9B,CAAC;KAAA;IAEY,IAAI,CAAC,CAAc;;QAChC,CAAC;KAAA;CAEJ;AARD,wDAQC"}
+{"version":3,"file":"1612134343076-Mockposts.js","sourceRoot":"","sources":["../../src/migrations/1612134343076-Mockposts.ts"],"names":[],"mappings":";;;;;;;;;;;;AAEA,MAAa,sBAAsB;IAElB,EAAE,CAAC,CAAc;;QAyM9B,CAAC;KAAA;IAEY,IAAI,CAAC,CAAc;;QAChC,CAAC;KAAA;CAEJ;AAhND,wDAgNC"}

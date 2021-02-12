@@ -14,7 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const apollo_server_express_1 = require("apollo-server-express");
 const connect_redis_1 = __importDefault(require("connect-redis"));
+require("dotenv-safe/config");
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 const express_1 = __importDefault(require("express"));
 const express_session_1 = __importDefault(require("express-session"));
 const ioredis_1 = __importDefault(require("ioredis"));
@@ -31,13 +33,11 @@ const user_1 = require("./resolvers/user");
 const createUpvoteLoader_1 = require("./utils/createUpvoteLoader");
 const createUserLoader_1 = require("./utils/createUserLoader");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
-    const path = require('path');
-    require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
     const conn = yield typeorm_1.createConnection({
         type: "postgres",
         url: process.env.DATABASE_URL,
         logging: true,
-        migrations: [path.join(__dirname, "./migrations/*")],
+        migrations: [path_1.default.join(__dirname, "./migrations/*")],
         entities: [Post_1.Post, User_1.User, Upvote_1.Upvote],
     });
     yield conn.runMigrations();
@@ -76,7 +76,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
             res,
             redis,
             userLoader: createUserLoader_1.createUserLoader(),
-            updootLoader: createUpvoteLoader_1.createUpvoteLoader(),
+            upvote: createUpvoteLoader_1.createUpvoteLoader(),
         }),
     });
     apolloServer.applyMiddleware({
